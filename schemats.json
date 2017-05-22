@@ -1,0 +1,4 @@
+{
+  "conn": "mysql://homestead:secret@localhost:33060/prohabbits",
+  "table": ["users"]
+}
