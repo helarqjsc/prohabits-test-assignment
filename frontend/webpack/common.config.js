@@ -12,11 +12,11 @@ var devUrl;
 
 // Location dist for dev and prod
 if (!global.ssr && process.env.NODE_ENV === 'development') {
-  devUrl = 'http://localhost:3000/dist/';
+  devUrl = 'http://192.168.10.10:3000/dist/';
 }
 
 if (global.ssr && process.env.NODE_ENV === 'development') {
-  devUrl = 'http://localhost:3001/dist/';
+  devUrl = 'http://192.168.10.10:3001/dist/';
 }
 
 if (process.env.NODE_ENV === 'production') {

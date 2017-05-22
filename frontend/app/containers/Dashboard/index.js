@@ -9,18 +9,27 @@ import s from './styles.css';
 class Dashboard extends Component {
   static propTypes = {
     posts: PropTypes.object,
-    auth: PropTypes.boolean
+    auth: PropTypes.object
   };
 
   componentDidMount() {
-    const { posts } = this.props;
 
-    // Get posts from api, see /app/mobx/stores/posts
-    posts.getDashboard();
+  }
+
+  login() {
+    this.props.auth.login();
+  }
+
+  logout() {
+    this.props.auth.logout();
   }
 
   render() {
-    const { posts } = this.props;
+    const { isAuthenticated } = this.props.auth;
+
+    if (!isAuthenticated()) {
+      this.login();
+    }
 
     return (
       <section className={s.root}>

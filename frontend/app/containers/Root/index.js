@@ -39,7 +39,6 @@ class Root extends Component {
 
     return (
       <section>
-        <Header />
         {
           app.isLoading
             ? <Loading />

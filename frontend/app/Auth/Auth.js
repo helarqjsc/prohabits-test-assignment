@@ -2,13 +2,13 @@
 
 import { EventEmitter } from 'events';
 import auth0 from 'auth0-js';
-import { history } from 'react-router';
+import { browserHistory } from 'react-router';
 
-export default class Auth extends EventEmitter {
+class Auth extends EventEmitter {
   auth0 = new auth0.WebAuth({
     domain: 'prohabits.auth0.com',
     clientID: 'PvA4XzMNmlCGoT5gUPev7XvYnETTsyYB',
-    redirectUri: 'http://localhost:3000',
+    redirectUri: 'http://192.168.10.10:3000/callback',
     audience: 'https://prohabits.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid'
@@ -30,9 +30,10 @@ export default class Auth extends EventEmitter {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
       this.setSession(authResult);
-      history.push('/dashboard');
+      browserHistory.push('/dashboard');
     } else if (err) {
-      history.push('/dashboard');
+      console.log("err", err);
+      browserHistory.push('/dashboard');
       console.log(err);
     }
   });
@@ -46,7 +47,7 @@ export default class Auth extends EventEmitter {
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
       // navigate to the home route
-      history.push('/dashboard');
+      browserHistory.push('/dashboard');
     }
   }
 
@@ -56,7 +57,7 @@ export default class Auth extends EventEmitter {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     // navigate to the home route
-    history.push('/dashboard');
+    browserHistory.push('/dashboard');
   }
 
   isAuthenticated() {
@@ -66,3 +67,5 @@ export default class Auth extends EventEmitter {
     return new Date().getTime() < expiresAt;
   }
 }
+
+export default new Auth();

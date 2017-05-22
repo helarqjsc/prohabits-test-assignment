@@ -16,7 +16,7 @@ global.ssr = true;
   // Proxy for static folder
   app.use(/\/static\/(.*)/, (req, res) => {
     req.url = req.originalUrl;
-    proxy.web(req, res, { target: 'http://localhost:3000' });
+    proxy.web(req, res, { target: 'http://192.168.10.10:3000' });
   });
 
   app.use(require('webpack-dev-middleware')(compiler, {
