@@ -32,9 +32,8 @@ class Auth extends EventEmitter {
       this.setSession(authResult);
       browserHistory.push('/dashboard');
     } else if (err) {
-      console.log("err", err);
-      browserHistory.push('/dashboard');
       console.log(err);
+      browserHistory.push('/dashboard');
     }
   });
   }

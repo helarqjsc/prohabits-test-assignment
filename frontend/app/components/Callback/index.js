@@ -2,24 +2,25 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { observer } from 'mobx-react';
 import connect from 'stores/connect';
+import { handleAuthentication } from 'utils/rules';
 
 /* component styles */
 import s from './styles.css';
 
+@handleAuthentication
 class Callback extends Component {
   static propTypes = {
     posts: PropTypes.object,
   };
   
   render() {
-    console.log("this.props", this.props);
 
     return (
       <section className={s.root}>
         <Helmet
-          title="posts"
+          title="Loading..."
         />
-        <h1>Callback page</h1>
+        <h1>Please wait...</h1>
 
       </section>
     );

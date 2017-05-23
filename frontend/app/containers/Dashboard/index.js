@@ -2,10 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { observer } from 'mobx-react';
 import connect from 'stores/connect';
+import { authorizedOnly } from 'utils/rules';
 
 /* component styles */
 import s from './styles.css';
 
+@authorizedOnly
 class Dashboard extends Component {
   static propTypes = {
     posts: PropTypes.object,
@@ -25,11 +27,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
-
-    if (!isAuthenticated()) {
-      this.login();
-    }
 
     return (
       <section className={s.root}>
