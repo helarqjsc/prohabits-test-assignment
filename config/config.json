@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "homestead",
+    "password": "secret",
+    "database": "prohabits",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "homestead",
+    "password": "secret",
+    "database": "prohabits",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "homestead",
+    "password": "secret",
+    "database": "prohabits",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
