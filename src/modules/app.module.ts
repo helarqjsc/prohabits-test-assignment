@@ -3,7 +3,6 @@ import { CommitmentsService } from '../components/CommitmentsService';
 import { SequelizeService } from '../components/SequelizeService';
 
 import { CommitmentsController } from '../controllers/CommitmentsController';
-import { CorsMiddleware } from '../middlewares/cors';
 
 @Module({
     controllers: [ CommitmentsController ],
@@ -11,8 +10,8 @@ import { CorsMiddleware } from '../middlewares/cors';
     exports: [  ],
 })
 export class ApplicationModule {
-    configure(consumer: MiddlewaresConsumer) {
-        consumer.apply(CorsMiddleware)
-                .forRoutes(CommitmentsController);
-    }
+    // configure(consumer: MiddlewaresConsumer) {
+    //     consumer.apply(CorsMiddleware)
+    //             .forRoutes(CommitmentsController);
+    // }
 }

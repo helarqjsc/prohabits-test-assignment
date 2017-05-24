@@ -24,12 +24,12 @@ class Commitments {
       });
   }
 
-  @action addCommitment(item) {
+  @action addCommitment(commitment) {
 
     // We should make it an optimistic update in the future.
-    this.items.push(item);
+    this.items.push(commitment);
     axios
-      .put(API_URL + '/commitments', { item });
+      .put(API_URL + '/commitments', { commitment });
   }
 
   @action updateCommitment(item) {

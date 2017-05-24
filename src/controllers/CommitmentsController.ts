@@ -1,4 +1,4 @@
-import { Controller, Get, Post, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Put, Post, Req, Res, Param, Body, HttpStatus } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { CommitmentsService } from '../components/CommitmentsService';
 
@@ -13,8 +13,13 @@ export class CommitmentsController {
     res.status(HttpStatus.OK).json({commitments});
   }
 
-  // public async getUser(@Response() res, @Param('id') id) {
-  //   const user = await this.usersService.getUser(id);
-  //   res.status(HttpStatus.OK).json(user);
-  // }
+  @Put()
+  async addCommitment(@Req() req, @Res() res, @Body('commitment') commitment) {
+    commitment.userId = 34;
+    const savedCommitment = await this.Commitments.instance.create(commitment);
+
+    res.status(HttpStatus.OK).json({a: 123});
+  }
+
+
 }
