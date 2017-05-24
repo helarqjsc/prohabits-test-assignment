@@ -3,7 +3,6 @@ import { observer } from 'mobx-react';
 import R from 'ramda';
 
 import connect from 'stores/connect';
-import Header from 'components/Header';
 import Loading from 'components/Loading';
 
 /* global styles for app */

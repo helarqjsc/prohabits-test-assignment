@@ -1,0 +1,93 @@
+.button {
+  cursor: pointer;
+}
+
+.active-i-commit {
+  background: rgba(255,255,255,0.0);
+  top: 255px;
+  height: 48px;
+  width: 197px;
+  position: absolute;
+  margin: 0;
+  left: 145px;
+  transition: all .3s ease-in-out;
+}
+.active-rectangle {
+  background: rgba(0,189,155,1.0);
+  top: 0;
+  height: 48px;
+  width: 197px;
+  position: absolute;
+  margin: 0;
+  left: 0;
+  border-radius: 5px;
+}
+.active-label {
+  background: rgba(255, 255, 255, 0.0);
+  top: 12px;
+  height: auto;
+  width: auto;
+  position: absolute;
+  margin: 0;
+  left: 60px;
+  font-family: 'Domus-Semibold', serif;
+  font-size: 18.0px;
+  color: rgba(255, 255, 255, 1.0);
+  text-align: left;
+  letter-spacing: 1.2px;
+  line-height: 21.0px;
+}
+
+.complete-i-commit {
+  background: rgba(255,255,255,0.0);
+  top: 255px;
+  height: 48px;
+  width: 197px;
+  position: absolute;
+  margin: 0;
+  left: 145px;
+  transition: all .3s ease-in-out;
+}
+.complete-rectangle {
+  background: rgba(46,151,221,1.0);
+  top: 0;
+  height: 48px;
+  width: 197px;
+  position: absolute;
+  margin: 0;
+  left: 0;
+  border-radius: 5px;
+}
+.complete-view8 {
+  background: rgba(255,255,255,0.0);
+  top: 11px;
+  height: 22px;
+  width: 115px;
+  position: absolute;
+  margin: 0;
+  left: 24px;
+}
+.complete-shape {
+  background: rgba(255,255,255,0.0);
+  top: 4px;
+  height: 18px;
+  width: 22px;
+  position: absolute;
+  margin: 0;
+  left: 0;
+}
+.complete-complete {
+  background: rgba(255,255,255,0.0);
+  top: 0;
+  height: auto;
+  width: auto;
+  position: absolute;
+  margin: 0;
+  left: 34px;
+  font-family: 'Domus-Semibold',serif;
+  font-size: 18.0px;
+  color: rgba(255,255,255,1.0);
+  text-align: left;
+  letter-spacing: 1.2px;
+  line-height: 21.0px;
+}

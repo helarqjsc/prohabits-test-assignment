@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { posts, app } from '../';
+import { app, commitments } from '../';
 import Auth from '../../Auth/Auth';
 
 
@@ -10,6 +10,7 @@ function connect(DecoratedComponent) {
         <DecoratedComponent
           auth={Auth}
           app={app}
+          commitments={commitments}
           {...this.props}
         />
       );

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute, browserHistory, Redirect, IndexRedirect } from 'react-router';
 import Auth from './Auth/Auth';
-import asyncComponent from './utils/asyncComponent'; /* for async page, show loading component */
 
 
 import Root from './containers/Root';
@@ -26,10 +25,6 @@ export default (
         {/*callback('', Callback);*/}
       {/*}, 'callback'))*/}
     {/*} />*/}
-
-    <Route path="/async-example" getComponent={(location, callback) =>
-        asyncComponent(require.ensure([], require => callback('', require('./components/AsyncExample').default), 'async-example'))
-    } />
 
 
 

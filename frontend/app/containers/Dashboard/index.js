@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { observer } from 'mobx-react';
 import connect from 'stores/connect';
 import { authorizedOnly } from 'utils/rules';
+import ICommitButton from 'components/ICommitButton';
 
 /* component styles */
 import s from './styles.css';
@@ -10,12 +11,12 @@ import s from './styles.css';
 @authorizedOnly
 class Dashboard extends Component {
   static propTypes = {
-    posts: PropTypes.object,
+    commitments: PropTypes.object,
     auth: PropTypes.object
   };
 
   componentDidMount() {
-
+    // this.setState({ commitment });
   }
 
   login() {
@@ -26,7 +27,28 @@ class Dashboard extends Component {
     this.props.auth.logout();
   }
 
+  handleICommitClick() {
+    const { commitments } = this.props;
+
+    const commitment = {
+      commitmentId: 1
+    };
+
+    commitments.addCommitment(commitment);
+    this.setState({ commitment });
+  }
+
+  handleCompleteClick() {
+    const { commitments } = this.props;
+
+    commitments.completeCommitment(this.state.commitment);
+  }
+
   render() {
+    const { commitments } = this.props;
+
+    const commitmentExists = this.state && this.state.commitment; // commitments.getCommitmentById();
+    const commitmentCompleted = commitmentExists && this.state.commitment.completed;
 
     return (
       <section className={s.root}>
@@ -139,12 +161,11 @@ class Dashboard extends Component {
               </div>
             </div>
             <div className="bp2-todays-challenge"><img className="bp2-image22" src="https://anima-uploads.s3.amazonaws.com/590915e47e20f8000c945afc/591f41455b9626000b1425d0/591f4b2188012c000d4ce68d/img/dashboardv2active  768pxcombined shape  2@2x.png" />
-              <a href="dashboardv2complete768pxcopy">
-                <div className="bp2-i-commit">
-                  <div className="bp2-rectangle" />
-                  <div className="bp2-label18">I Commit </div>
-                </div>
-              </a>
+              <ICommitButton commitOnClick={() => this.handleICommitClick()}
+                             completeOnClick={() => this.handleCompleteClick()}
+                             commitmentExists={commitmentExists}
+                             mainStyleName="bp2"
+                             labelStyleName="label18"/>
               <div className="bp2-btn-view" />
               <div className="bp2-view7">
                 <div className="bp2-think-of-a-new-tradi">Think of a new tradition to start in the office that celebrates a win for the team. Next, get some coworkers advice and thoughts on the idea. Consider implementing the tradition after the next success. </div>
@@ -160,12 +181,11 @@ class Dashboard extends Component {
         <div className="bp3-dashboard-v2-active320-px">
           <div className="bp3-todays-challenge-layout-container">
             <div className="bp3-todays-challenge"><img className="bp3-combined-shape" src="https://anima-uploads.s3.amazonaws.com/590915e47e20f8000c945afc/591f41455b9626000b1425d0/591f4b2188012c000d4ce68d/img/dashboardv2active  320pxcombined shape@2x.png" />
-              <a href="dashboardv2complete768pxcopy">
-                <div className="bp3-i-commit">
-                  <div className="bp3-rectangle" />
-                  <div className="bp3-label1">I Commit </div>
-                </div>
-              </a>
+              <ICommitButton commitOnClick={() => this.handleICommitClick()}
+                             completeOnClick={() => this.handleCompleteClick()}
+                             commitmentExists={commitmentExists}
+                             mainStyleName="bp3"
+                             labelStyleName="label1"/>
               <div className="bp3-paragraph">
                 <div className="bp3-think-of-a-new-tradi">Think of a new tradition to start in the office that celebrates a win for the team. Next, get some coworkers advice and thoughts on the idea. Consider implementing the tradition after the next success. </div>
                 <div className="bp3-family-traditions">Family Traditions </div>
@@ -396,12 +416,11 @@ class Dashboard extends Component {
                 </div>
               </div>
               <div className="bp1-todays-challenge"><img className="bp1-combined-shape" src="https://anima-uploads.s3.amazonaws.com/590915e47e20f8000c945afc/591f41455b9626000b1425d0/591f4b2188012c000d4ce68d/img/dashboardv2active  1920pxcombined shape@2x.png" />
-                <a href="dashboardv2complete768pxcopy">
-                  <div className="bp1-i-commit">
-                    <div className="bp1-rectangle" />
-                    <div className="bp1-label17">I Commit </div>
-                  </div>
-                </a>
+                <ICommitButton commitOnClick={() => this.handleICommitClick()}
+                               completeOnClick={() => this.handleCompleteClick()}
+                               commitmentExists={commitmentExists}
+                               mainStyleName="bp1"
+                               labelStyleName="label17"/>
                 <div className="bp1-view8">
                   <div className="bp1-think-of-a-new-tradi">Think of a new tradition to start in the office that celebrates a win for the team. Next, get some coworkers advice and thoughts on the idea. Consider implementing the tradition after the next success. </div>
                   <div className="bp1-family-traditions">Family Traditions </div>

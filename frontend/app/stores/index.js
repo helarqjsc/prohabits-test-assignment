@@ -1,7 +1,7 @@
-import posts from './posts';
+import commitments from './commitments';
 import app from './app';
 
 export {
-  posts,
+  commitments,
   app,
 };
