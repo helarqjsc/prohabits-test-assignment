@@ -1,8 +1,14 @@
-'use strict';
+import { Component } from '@nestjs/common';
+import { HttpException } from '@nestjs/core';
+import { SequelizeService } from './SequelizeService';
+import Sequelize from 'sequelize';
 
-module.exports = {
-  up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('commitments', {
+@Component()
+export class CommitmentsService {
+  public instance: any;
+
+  constructor(private sequelize: SequelizeService) {
+    this.instance = sequelize.instance.define('commitments', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -26,14 +32,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         default: false
       }
-    },
-    {
-      engine: 'InnoDB',
-      charset: 'utf8'
     });
-  },
-
-  down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('commitments');
   }
-};
+
+}

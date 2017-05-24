@@ -1,9 +1,18 @@
 import { Module, MiddlewaresConsumer } from '@nestjs/common';
+import { CommitmentsService } from '../components/CommitmentsService';
+import { SequelizeService } from '../components/SequelizeService';
+
 import { CommitmentsController } from '../controllers/CommitmentsController';
+import { CorsMiddleware } from '../middlewares/cors';
 
 @Module({
     controllers: [ CommitmentsController ],
-    components: [  ],
+    components: [ CommitmentsService, SequelizeService ],
     exports: [  ],
 })
-export class ApplicationModule {}
+export class ApplicationModule {
+    configure(consumer: MiddlewaresConsumer) {
+        consumer.apply(CorsMiddleware)
+                .forRoutes(CommitmentsController);
+    }
+}

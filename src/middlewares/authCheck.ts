@@ -16,6 +16,6 @@ export class AuthMiddleware implements NestMiddleware {
       audience: 'https://prohabits.auth0.com/userinfo',
       issuer: 'prohabits.auth0.com',
       algorithms: ['RS256']
-    })(req, res, next);
+    });
   }
 }
