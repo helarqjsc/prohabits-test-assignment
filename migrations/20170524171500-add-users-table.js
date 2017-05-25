@@ -8,7 +8,7 @@ module.exports = {
           primaryKey: true,
           autoIncrement: true
         },
-        accessToken: {
+        userId: {
           type: Sequelize.STRING
         }
       },

@@ -21,6 +21,7 @@ class AxiosWithAuthentication {
       ...defaultConfig,
       headers: {
         ...defaultConfig.headers,
+        'Authorization': 'Bearer ' + idToken,
         'Access-token': accessToken,
         'ID-token': idToken
       }

@@ -1,6 +1,4 @@
 import { Middleware, NestMiddleware } from '@nestjs/common';
-const jwt = require('express-jwt');
-const jwks = require('jwks-rsa');
 
 @Middleware()
 export class AuthMiddleware implements NestMiddleware {
