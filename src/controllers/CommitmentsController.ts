@@ -12,7 +12,7 @@ export class CommitmentsController {
   ) {}
 
   @Get()
-  async getAll(req: Request, res: Response, next: NextFunction) {
+  async getAll(@Res() res) {
     const commitments = await this.Commitments.instance.findAll();
     res.status(HttpStatus.OK).json({commitments});
   }
@@ -20,10 +20,9 @@ export class CommitmentsController {
   @Put()
   async addCommitment(@Req() req, @Res() res, @Headers() head, @Body('commitment') commitment) {
     const user = await this.Users.authentication.getProfile(head['access-token']);
-    commitment.userId = user.sub();
-    const savedCommitment = await this.Commitments.instance.create(commitment);
-
-    res.status(HttpStatus.OK).json({});
+    commitment.userId = user.toString();
+    this.Commitments.instance.create(commitment);
+    res.status(HttpStatus.OK).json({status: 321});
   }
 
 

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const defaultConfig = {
   baseURL: 'http://192.168.10.10:3030/',
-  timeout: 1000,
+  timeout: 10000,
   headers: {
 
   }
