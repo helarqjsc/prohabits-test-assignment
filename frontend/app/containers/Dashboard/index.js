@@ -31,11 +31,17 @@ class Dashboard extends Component {
     const { commitments } = this.props;
 
     const commitment = {
-      commitmentId: 1
+      commitmentId: 1,
+      submited: true
     };
-
-    commitments.addCommitment(commitment);
     this.setState({ commitment });
+
+    commitments
+      .addCommitment(commitment)
+      .catch(() => {
+        commitment.submited = false;
+        this.setState({ commitment });
+      });
   }
 
   handleCompleteClick() {
@@ -47,7 +53,7 @@ class Dashboard extends Component {
   render() {
     const { commitments } = this.props;
 
-    const commitmentExists = this.state && this.state.commitment; // commitments.getCommitmentById();
+    const commitmentExists = this.state && this.state.commitment && this.state.commitment.submited; // commitments.getCommitmentById();
     const commitmentCompleted = commitmentExists && this.state.commitment.completed;
 
     return (

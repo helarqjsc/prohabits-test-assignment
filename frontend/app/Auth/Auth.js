@@ -3,6 +3,7 @@
 import { EventEmitter } from 'events';
 import auth0 from 'auth0-js';
 import { browserHistory } from 'react-router';
+import axiosAuth from 'utils/axiosWithAuthentication';
 
 class Auth extends EventEmitter {
   auth0 = new auth0.WebAuth({
@@ -20,6 +21,7 @@ class Auth extends EventEmitter {
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
+    axiosAuth.setTokens(this.getAccessToken(), this.getIdToken());
   }
 
   login() {
@@ -57,6 +59,14 @@ class Auth extends EventEmitter {
     localStorage.removeItem('expires_at');
     // navigate to the home route
     browserHistory.push('/dashboard');
+  }
+
+  getAccessToken() {
+    return localStorage.getItem('access_token');
+  }
+
+  getIdToken() {
+    return localStorage.getItem('id_token');
   }
 
   isAuthenticated() {

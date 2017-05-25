@@ -1,10 +1,13 @@
 import { observable, action } from 'mobx';
-import axios from 'axios';
-import { API_URL } from 'utils/constants';
+import axiosAuth from 'utils/axiosWithAuthentication';
 
 class Commitments {
   @observable items = [];
   @observable isFetching = false;
+
+  constructor() {
+    this.axios = axiosAuth.getInstance();
+  }
 
   @action getAllCommitments() {
     this.isFetching = true;
@@ -15,32 +18,39 @@ class Commitments {
       return promise;
     }
 
-    axios
-      .get(API_URL + '/commitments')
-      .then(res => {
-        this.items = res.data.posts;
-        this.isFetching = false;
-        return this.items;
-      });
+    return this.axios
+            .get('commitments')
+            .then(res => {
+              this.items = res.data.posts;
+              this.isFetching = false;
+              return this.items;
+            });
   }
 
   @action addCommitment(commitment) {
 
     // We should make it an optimistic update in the future.
     this.items.push(commitment);
-    axios
-      .put(API_URL + '/commitments', { commitment });
+    return this.axios
+            .put('commitments', { commitment });
   }
 
   @action updateCommitment(item) {
-    axios
-      .post(API_URL + '/commitments/' + item.id, { item });
+    return this.axios
+            .post('commitments/' + item.id, { item });
+  }
+
+  @action removeCommitment(item) {
+    let commitment = this.getCommitmentById(item.id);
+    this.items.remove(commitment);
+    return this.axios
+            .delete('commitments/' + item.id,);
   }
 
   @action completeCommitment(item) {
     let commitment = this.getCommitmentById(item.id);
     commitment.completed = true;
-    this.updateCommitment(commitment);
+    return this.updateCommitment(commitment);
   }
 
   getCommitmentById(id) {
